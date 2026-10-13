@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bundle — Examples</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800&display=swap">
+
+<style>
+/* ============================================================
+   The front door. Two choices, in the same language as the slide
+   deck behind it: white ground, one blue, mint for anything good,
+   Urbanist throughout, and the Bundle mark at the end.
+
+   One column, centred, with a width cap — so it sits in the middle
+   of a wide monitor and stacks on a phone without any of it
+   drifting off to one side.
+
+   One of the two choices is deliberately shut. It is drawn as a
+   real card rather than hidden, so it reads as "coming", not
+   "missing".
+   ============================================================ */
+:root {
+  --blue:      #2757E2;
+  --blue-dark: #1B41B4;
+  --mint:      #5FE0B0;
+  --ink:       #10131A;
+  --ink-soft:  #464B58;
+  --line:      #E4E7EF;
+  --grey:      #F4F6FA;
+  --wrap:      1080px;  /* how wide the column is allowed to get */
+  --gutter:    28px;    /* the air either side of it */
+  --foot:      104px;   /* the strip the Bundle mark sits in */
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #CBD2E4;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+html { scrollbar-width: thin; scrollbar-color: #CBD2E4 transparent; }
+
+html, body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Urbanist", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The whole page is one centred column, vertically centred too when
+   there is room to spare. */
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0 var(--foot);
+}
+
+.wrap {
+  width: min(var(--wrap), 100% - var(--gutter) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ---------------- The blue block ---------------- */
+.hero {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 28px;
+  padding: 36px 40px 34px;
+  text-align: center;
+}
+.hero .eyebrow {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .8;
+}
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 3.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+.hero p {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: clamp(14px, 1.25vw, 17px);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* ---------------- The two choices ---------------- */
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s ease, border-color .18s ease;
+}
+.card .band {
+  height: clamp(86px, 11vh, 120px);
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+}
+.card .band svg { width: clamp(38px, 4.4vh, 56px); height: auto; }
+.card .body {
+  padding: clamp(18px, 2.4vh, 26px) clamp(20px, 2.2vw, 28px) clamp(18px, 2.4vh, 24px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+.card h2 {
+  margin: 0;
+  font-size: clamp(19px, 1.9vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+.card p {
+  margin: 0;
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.card .foot {
+  margin-top: auto;
+  padding-top: clamp(12px, 2vh, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #EAFBF4;
+  color: #0F8A68;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.pill svg { width: 14px; height: 14px; flex: none; }
+.go {
+  width: clamp(40px, 5vh, 48px);
+  height: clamp(40px, 5vh, 48px);
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  flex: none;
+  box-shadow: 0 6px 18px rgba(39, 87, 226, 0.28);
+  transition: background .16s ease, transform .16s ease;
+}
+.go svg { width: 45%; height: auto; }
+
+/* The open one */
+.card.open:hover,
+.card.open:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(16, 19, 26, 0.12);
+  border-color: #C9D5F7;
+  outline: none;
+}
+.card.open:hover .go,
+.card.open:focus-visible .go { background: var(--blue-dark); transform: scale(1.07); }
+
+/* The shut one: still a card, plainly not ready */
+.card.locked { background: var(--grey); border-style: dashed; cursor: not-allowed; }
+.card.locked .band { background: #D7DCE8; }
+.card.locked .band svg { opacity: .75; }
+.card.locked h2, .card.locked p { color: #7E8698; }
+.card.locked .pill { background: #E6E9F1; color: #6B7488; }
+.card.locked .go { background: #C3CADA; box-shadow: none; }
+.card.locked .lock {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  display: grid; place-items: center;
+  color: #6B7488;
+  box-shadow: 0 3px 10px rgba(16,19,26,.1);
+}
+.card.locked .lock svg { width: 16px; height: 16px; }
+/* A small shake when it is pressed, so the lock reads as deliberate */
+.card.locked.nudge { animation: nudge .42s cubic-bezier(.36,.07,.19,.97); }
+@keyframes nudge {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-5px); }
+  40%, 60% { transform: translateX(5px); }
+}
+
+.note {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8A91A3;
+  min-height: 20px;
+}
+
+/* ---------------- The mark at the end ---------------- */
+.logo {
+  pointer-events: none;
+  position: fixed;
+  left: 50%; bottom: 18px;
+  transform: translateX(-50%);
+  height: 56px;
+}
+.logo img { height: 100%; width: auto; display: block; }
+
+/* ---------------- Phones and narrow windows ---------------- */
+@media (max-width: 760px) {
+  :root { --gutter: 18px; --foot: 0px; }
+  .page { justify-content: flex-start; padding: 22px 0 28px; }
+  .wrap { gap: 20px; }
+  .hero { padding: 26px 24px 24px; border-radius: 22px; }
+  .hero h1 { font-size: clamp(25px, 7.4vw, 34px); }
+  .hero p { font-size: 14.5px; }
+  .choices { grid-template-columns: 1fr; gap: 16px; }
+  .card { border-radius: 20px; }
+  .card .band { height: 78px; }
+  .card .band svg { width: 36px; }
+  .card .body { padding: 18px 20px 18px; }
+  .card h2 { font-size: 20px; }
+  .card p { font-size: 14px; }
+  /* the mark joins the flow rather than floating over the cards */
+  .logo { position: static; transform: none; height: 42px; margin: 10px auto 0; }
+}
+
+/* ---------------- Short windows and embeds ---------------- */
+@media (min-width: 761px) and (max-height: 640px) {
+  :root { --foot: 72px; }
+  .page { padding: 20px 0 var(--foot); }
+  .wrap { gap: 18px; }
+  .hero { padding: 20px 28px 20px; border-radius: 22px; }
+  .hero .eyebrow { margin-bottom: 6px; font-size: 11.5px; }
+  .hero h1 { margin-bottom: 7px; }
+  .card .body { gap: 6px; }
+  .logo { height: 40px; bottom: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Bundle</p>
+      <h1>Pick a set of examples.</h1>
+      <p>Everything in here is live and clickable — working prototypes in the browser, not screenshots of them.</p>
+    </header>
+
+    <main class="choices">
+      <a class="card open" href="https://123arnasxyz.github.io/gamification-prototypes/" id="gamification">
+        <div class="band">
+          <!-- controller -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 7h11a4.5 4.5 0 0 1 4.4 3.6l.9 5a3.1 3.1 0 0 1-5.6 2.4L15.6 16H8.4l-1.6 2a3.1 3.1 0 0 1-5.6-2.4l.9-5A4.5 4.5 0 0 1 6.5 7Z"/>
+            <path d="M7 10.5v3M5.5 12h3"/>
+            <circle cx="16.2" cy="11.4" r=".9" fill="#fff" stroke="none"/>
+            <circle cx="18.3" cy="13.3" r=".9" fill="#fff" stroke="none"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h2>Gamification prototypes</h2>
+          <p>Twenty-three ideas for making learning worth doing, each one built as a prototype you can actually play with. Start at the first and work along.</p>
+          <div class="foot">
+            <span class="pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              23 examples, all live
+            </span>
+            <span class="go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <div class="card locked" id="animation" role="button" aria-disabled="true" tabindex="0"
+           aria-label="Animation examples — in development, not available yet">
+        <span class="lock" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/>
+            <path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/>
+          </svg>
+        </span>
+        <div class="band">
+          <!-- play / film -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="3"/>
+            <path d="M2.5 9h19M7 4.5V9M17 4.5V9"/>
+            <path d="M10.6 12.2v4.1l3.6-2-3.6-2.1Z" fill="#fff" stroke="none"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h2>Animation examples</h2>
+          <p>Short animated explainers and motion pieces. Being built at the moment — this one opens when there is something worth looking at in it.</p>
+          <div class="foot">
+            <span class="pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 1.8"/></svg>
+              In development
+            </span>
+            <span class="go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <p class="note" id="note">Both sets open in this window.</p>
+  </div>
+
+  <div class="logo">
+    <img src="./assets/Hero-Header-Block-Logo.png" alt="Bundle">
+  </div>
+</div>
+
+<script>
+/* The locked card does nothing, but it says so when it is pressed —
+   silence reads as a broken link. */
+const locked = document.getElementById('animation');
+const note = document.getElementById('note');
+const NOTE_DEFAULT = note.textContent;
+let noteTimer = 0;
+
+function refuse() {
+  locked.classList.remove('nudge');
+  void locked.offsetWidth;          // restart the animation
+  locked.classList.add('nudge');
+  note.textContent = 'Animation examples are still being built — there is nothing in there yet.';
+  clearTimeout(noteTimer);
+  noteTimer = setTimeout(() => { note.textContent = NOTE_DEFAULT; }, 3200);
+}
+
+locked.addEventListener('click', refuse);
+locked.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); refuse(); }
+});
+locked.addEventListener('animationend', () => locked.classList.remove('nudge'));
+</script>
+
+</body>
+</html>
